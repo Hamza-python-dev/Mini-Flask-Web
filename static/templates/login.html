@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #212741;">
+  <div style="background: #fff; padding: 50px; border-radius: 10px; width: 100%; max-width: 400px; box-shadow: 0px 0px 20px rgba(0,0,0,0.2);">
+    
+    <h3 style="text-align: center; color: #212741; font-weight: 700; margin-bottom: 10px;">Admin Login</h3>
+    <p style="text-align: center; color: #888; margin-bottom: 30px;">Only authorized access allowed</p>
+
+    {% if error %}
+    <div style="background-color: #ffe0e0; color: #cc0000; padding: 10px 15px; border-radius: 5px; margin-bottom: 20px; font-size: 14px;">
+      {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('login') }}">
+      
+      <div style="margin-bottom: 20px;">
+        <label style="font-size: 14px; font-weight: 600; color: #212741;">Username</label>
+        <input type="text" name="username" required
+          style="width: 100%; height: 45px; border: 1px solid #eee; border-radius: 5px; padding: 0 15px; margin-top: 8px; font-size: 14px; outline: none;">
+      </div>
+
+      <div style="margin-bottom: 30px;">
+        <label style="font-size: 14px; font-weight: 600; color: #212741;">Password</label>
+        <input type="password" name="password" required
+          style="width: 100%; height: 45px; border: 1px solid #eee; border-radius: 5px; padding: 0 15px; margin-top: 8px; font-size: 14px; outline: none;">
+      </div>
+
+      <button type="submit"
+        style="width: 100%; height: 45px; background-color: #ff511a; color: #fff; border: none; border-radius: 5px; font-size: 15px; font-weight: 600; cursor: pointer;">
+        Login
+      </button>
+
+    </form>
+  </div>
+</section>
+
+{% endblock %}

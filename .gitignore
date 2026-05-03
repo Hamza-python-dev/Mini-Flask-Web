@@ -1,0 +1,25 @@
+.env
+__pycache__/
+*.pyc
+venv/
+*.db
+# Uploaded files
+static/uploads/
+
+# Editor settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Egg/dist info
+*.egg-info/
+dist/
+build/
+
+instance/
+*.log
+.coverage
+htmlcov/
