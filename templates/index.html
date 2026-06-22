@@ -21,10 +21,10 @@
                       <a href="#services">Discover More</a>
                     </div>
                     <div class="orange-button">
-                      <a href="{{url_for('contact')}}">Contact Us</a>
+                      <a href="{{url_for('portal.contact')}}">Contact Us</a>
                     </div>
                     <div class="orange-button btn-top-margin">
-                    <a href="{{ url_for('admission') }}">Apply Admission</a>
+                    <a href="{{ url_for('portal.admission') }}">Apply Admission</a>
                     </div>
                   </div>
                  </div>
@@ -48,7 +48,7 @@
                       <a href="#about">Discover More</a>
                     </div>
                     <div class="orange-button">
-                      <a href="{{ url_for('contact') }}">Contact Us</a>
+                      <a href="{{ url_for('portal.contact') }}">Contact Us</a>
                     </div>
                   </div>
                 </div>
@@ -71,7 +71,7 @@
                       <a href="#testimonials">Discover More</a>
                     </div>
                     <div class="orange-button">
-                      <a href="{{ url_for('contact') }}">Contact Us</a>
+                      <a href="{{ url_for('portal.contact') }}">Contact Us</a>
                     </div>
                   </div>
                 </div>
@@ -148,7 +148,7 @@
               <a href="#about">Discover More</a>
             </div>
             <div class="orange-button">
-              <a href="{{ url_for('contact') }}">Contact Us</a>
+              <a href="{{ url_for('portal.contact') }}">Contact Us</a>
             </div>
           </div>
         </div>
@@ -293,7 +293,7 @@
             <h4>Please tell us about your idea and how you want it to be</h4>
             <p>You are allowed to use this template for your websites. You are <b>NOT allowed</b> to redistribute the template ZIP file on any other template websites.<br><br>Thank you for downloading and using our templates. Please tell your friends about our website.</p>
             <div class="green-button">
-              <a href="{{url_for('about') }}">Discover More</a>
+              <a href="{{url_for('main.about') }}">Discover More</a>
             </div>
           </div>
         </div>
@@ -314,7 +314,7 @@
             <h6>Your Freedom</h6>
             <h4>Get a Financial Plan</h4>
           </div>
-            <form id="calculate" action="{{ url_for('financial_plan') }}" method="post">
+            <form id="calculate" action="{{ url_for('portal.financial_plan') }}" method="post">
             <div class="row">
               <div class="col-lg-6">
                 <fieldset>

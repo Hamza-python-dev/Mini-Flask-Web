@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section style="padding: 100px 0 60px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <div class="section-heading text-center mb-4">
+          <h6>AI Assistant</h6>
+          <h4>Ask Me Anything</h4>
+        </div>
+
+        <!-- Chat Box -->
+        <div id="chat-box" style="
+          height: 420px;
+          overflow-y: auto;
+          background: #1a1a2e;
+          border-radius: 15px;
+          padding: 20px;
+          margin-bottom: 20px;
+          border: 1px solid #f87c2e;
+        ">
+          <!-- Welcome message -->
+          <div class="bot-msg" style="
+            background: #f87c2e;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            max-width: 80%;
+          ">
+            👋 Hello! I am your Education Portal Assistant. Ask me about courses, admissions, or anything you want to learn!
+          </div>
+        </div>
+
+        <!-- Input Area -->
+        <div style="display: flex; gap: 10px;">
+          <input 
+            type="text" 
+            id="user-input" 
+            placeholder="Type your question here..." 
+            style="
+              flex: 1;
+              padding: 12px 18px;
+              border-radius: 10px;
+              border: 2px solid #f87c2e;
+              background: #1a1a2e;
+              color: white;
+              font-size: 15px;
+            "
+          >
+          <button onclick="sendMessage()" style="
+            background: #f87c2e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+          ">
+            Send ➤
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// This runs when user clicks Send
+function sendMessage() {
+    // Step 1: Get what user typed
+    const input = document.getElementById('user-input');
+    const message = input.value.trim();
+    
+    // Step 2: Don't send if empty
+    if (!message) return;
+
+    // Step 3: Show user's message in chat box
+    const chatBox = document.getElementById('chat-box');
+    chatBox.innerHTML += `
+        <div style="text-align:right; margin-bottom:10px;">
+            <span style="
+                background: #2ecc71;
+                color: white;
+                padding: 10px 15px;
+                border-radius: 10px;
+                display: inline-block;
+                max-width: 80%;
+            ">${message}</span>
+        </div>`;
+
+    // Step 4: Clear input box
+    input.value = '';
+
+    // Step 5: Show "typing..." while waiting for Gemini
+    chatBox.innerHTML += `
+        <div id="typing" style="margin-bottom:10px;">
+            <span style="
+                background: #f87c2e;
+                color: white;
+                padding: 10px 15px;
+                border-radius: 10px;
+                display: inline-block;
+            ">⏳ Typing...</span>
+        </div>`;
+
+    // Step 6: Auto scroll to bottom
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // Step 7: Send message to Flask /chat route
+    fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: message })
+    })
+    // Step 8: Get the response back as JSON
+    .then(response => response.json())
+    .then(data => {
+        // Step 9: Remove "typing..." indicator
+        document.getElementById('typing').remove();
+        
+        // Step 10: Show Gemini's reply
+        chatBox.innerHTML += `
+            <div style="margin-bottom:10px;">
+                <span style="
+                    background: #f87c2e;
+                    color: white;
+                    padding: 10px 15px;
+                    border-radius: 10px;
+                    display: inline-block;
+                    max-width: 80%;
+                ">${data.reply}</span>
+            </div>`;
+
+        // Step 11: Scroll to bottom again
+        chatBox.scrollTop = chatBox.scrollHeight;
+    })
+    // Step 12: Handle errors
+    .catch(error => {
+        document.getElementById('typing').remove();
+        chatBox.innerHTML += `
+            <div style="margin-bottom:10px;">
+                <span style="background:#e74c3c; color:white; padding:10px 15px; border-radius:10px; display:inline-block;">
+                    ❌ Error connecting. Try again!
+                </span>
+            </div>`;
+    });
+}
+
+// Allow pressing Enter key to send
+document.getElementById('user-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') sendMessage();
+});
+</script>
+{% endblock %}

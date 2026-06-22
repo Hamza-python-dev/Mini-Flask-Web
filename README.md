@@ -1,6 +1,6 @@
 # 🎓 EduPortal — Flask Web Application
 
-A full-stack web application built with **Python & Flask** that handles student admissions, contact forms, financial plan requests, and an admin dashboard — all with email notifications and file uploads.
+A full-stack web application built with **Python & Flask** that handles student admissions, contact forms, financial plan requests, an admin dashboard, and an AI-powered chatbot — all with email notifications and file uploads.
 
 ---
 
@@ -15,6 +15,8 @@ A full-stack web application built with **Python & Flask** that handles student 
 | 🔐 Admin Dashboard | Secure login to view and delete all submissions |
 | 📧 Email Alerts | Auto emails sent to both admin and user on form submission |
 | 🗄️ SQLite Database | All data stored persistently using SQLAlchemy ORM |
+| 🤖 AI Chatbot | Integrated chatbot to assist users with queries in real time |
+| 🧪 Pytest Testing | Automated test suite to ensure app reliability |
 
 ---
 
@@ -26,6 +28,8 @@ A full-stack web application built with **Python & Flask** that handles student 
 - **Frontend:** HTML, CSS, Jinja2 Templates
 - **File Handling:** Werkzeug (secure uploads)
 - **Environment:** python-dotenv
+- **AI Chatbot:** Integrated via API (conversational assistant)
+- **Testing:** Pytest + Flask test client
 
 ---
 
@@ -44,15 +48,18 @@ flask-web-app/
 │   ├── uploads/            # Uploaded photos and CNIC files
 │   └── css/                # Stylesheets
 │
-└── templates/
-    ├── index.html          # Homepage
-    ├── about-us.html       # About page
-    ├── our-services.html   # Services page
-    ├── contact.html        # Contact form
-    ├── admission.html      # Admission form
-    ├── login.html          # Admin login
-    ├── dashboard.html      # Admin dashboard
-    └── email_template.html # HTML email template
+├── templates/
+│   ├── index.html          # Homepage
+│   ├── about-us.html       # About page
+│   ├── our-services.html   # Services page
+│   ├── contact.html        # Contact form
+│   ├── admission.html      # Admission form
+│   ├── login.html          # Admin login
+│   ├── dashboard.html      # Admin dashboard
+│   └── email_template.html # HTML email template
+│
+└── tests/
+    └── test_app.py         # Pytest test suite
 ```
 
 ---
@@ -123,6 +130,49 @@ Visit **http://127.0.0.1:5000** in your browser 🎉
 
 ---
 
+## 🤖 AI Chatbot
+
+EduPortal includes a built-in AI chatbot to help users get quick answers about admissions, financial plans, and general queries.
+
+- Available on the homepage or a dedicated chatbot page
+- Responds in real time to user questions
+- Integrated via an AI API (e.g. OpenAI / Gemini / custom model)
+- Helps reduce load on admin by answering common questions automatically
+
+---
+
+## 🧪 Running Tests
+
+This project uses **Pytest** for automated testing.
+
+### Run all tests:
+
+```bash
+pytest
+```
+
+### Run with detailed output:
+
+```bash
+pytest -v
+```
+
+### Run a specific test file:
+
+```bash
+pytest tests/test_app.py
+```
+
+### What's tested:
+- ✅ Homepage loads correctly
+- ✅ Admission form submission
+- ✅ Contact form submission
+- ✅ Admin login (valid & invalid credentials)
+- ✅ Database operations
+- ✅ Email trigger on form submit
+
+---
+
 ## 🔐 Admin Panel
 
 Navigate to `/login` and use your admin credentials from `.env`.
@@ -165,6 +215,7 @@ Flask-Mail
 Flask-SQLAlchemy
 python-dotenv
 Werkzeug
+pytest
 ```
 
 ---
@@ -191,6 +242,7 @@ static/uploads/
 - [ ] Add email verification for applicants
 - [ ] Deploy to Render or Railway (free hosting)
 - [ ] Add student login portal
+- [ ] Improve chatbot with memory and context awareness
 
 ---
 
