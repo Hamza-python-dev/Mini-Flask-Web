@@ -13,7 +13,7 @@ def create_app():
     basedir = os.path.abspath(os.path.dirname(__file__))
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
+    app.config['UPLOAD_FOLDER'] = os.path.join(basedir,'static', 'uploads')
     app.config['MAIL_SERVER'] = os.getenv("MAIL_SERVER", "smtp.gmail.com")
     app.config['MAIL_PORT'] = int(os.getenv("MAIL_PORT", 465))
     app.config['MAIL_USERNAME'] = os.getenv("MAIL_USERNAME")
