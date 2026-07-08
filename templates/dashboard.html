@@ -34,7 +34,7 @@
           <td>{{ c.email }}</td>
           <td>{{ c.message }}</td>
           <td>
-            <a href="{{ url_for('delete_contact', id=c.id) }}" 
+            <a href="{{ url_for('admin.delete_contact', id=c.id) }}" 
                onclick="return confirm('Are you sure you want to delete this?')"
                style="background-color: #ff511a; color: #fff; padding: 5px 15px; border-radius: 5px; font-size: 13px;">
                Delete
@@ -116,7 +116,7 @@
           </td>
           <td>{{ a.additional_information }}</td>
           <td>
-            <a href="{{ url_for('delete_admission', id=a.id) }}"
+            <a href="{{ url_for('admin.delete_admission', id=a.id) }}"
                onclick="return confirm('Are you sure you want to delete this?')"
                style="background-color: #ff511a; color: #fff; padding: 5px 15px; border-radius: 5px; font-size: 13px;">
                Delete
@@ -158,7 +158,7 @@
           <td>{{ f.subject }}</td>
           <td>{{ f.reason }}</td>
           <td>
-            <a href="{{ url_for('delete_financial', id=f.id) }}"
+            <a href="{{ url_for('admin.delete_financial', id=f.id) }}"
                onclick="return confirm('Are you sure you want to delete this?')"
                style="background-color: #ff511a; color: #fff; padding: 5px 15px; border-radius: 5px; font-size: 13px;">
                Delete
